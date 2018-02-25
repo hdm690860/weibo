@@ -1,0 +1,979 @@
+@charset "UTF-8";
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+//@import "normalize-version";
+//@import "normalize";
+@import "compass";
+@import "variable","mixin";
+a{
+	text-decoration:none;
+}
+//字体文件
+@include font-face('wbficon',font-files('wbficon.eot','wbficon.otf','wbficon.svg','wbficon.ttf','wbficon.woff'));
+@include font-face('swbficon',font-files('swbficon.eot','swbficon.otf','swbficon.svg','swbficon.ttf','swbficon.woff'));
+/*共有样式*/
+%border{
+	border:1px solid $border_color;
+}
+%font{
+	font:{
+		size:12px;
+		family:'微软雅黑',Arial,Verdana,Helvetica,sans-serif;
+	}
+}
+%wicon {
+	font-family:"wbficon" !important;
+	-webkit-font-smoothing: antialiased;
+}
+%swbficon{
+	font-family:"swbficon",'微软雅黑',Arial,Verdana,Helvetica,sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+%bgwhite {
+	background-color:#fff;
+}
+%input {
+	border:none;
+	&:focus {
+		outline:none;
+	}
+}
+body{
+	background-color:$body_bg;
+}
+.clearfix{
+	@include legacy-pie-clearfix();
+}
+/*头部样式*/
+.heading {
+	height:48px;
+	border-top:2px solid $miancolor;
+	background-color:#ffffff;
+	@include box-shadow(0 1px 1px 1px #ECE3CE);
+	@at-root .head_box {
+		@include center(0,1240px);
+	}
+	.logo{
+		margin-top:8px;
+		@include float(left);
+		margin-left:10px;
+	}
+	.search{
+		@include float(left);
+		background-color:$search_color;
+		@extend %border;
+		width:$search_width;
+		height:28px;
+		margin:10px 0 0 30px;
+		padding-left:10px;
+		position:relative;
+		input{
+			border:none;
+			background-color:transparent;
+			padding:0;
+			&:focus{outline:none;}
+		}
+		@at-root .search_content{
+			@include font(#808080);
+			line-height:28px;
+			width:($search_width - 50);
+		}
+		@at-root .search_icon{
+			@extend %wicon;
+			font-size:18px;
+			width:18px;
+			position:absolute;
+			top:4px;
+			right:10px;
+			&:hover{
+				color:$miancolor;
+			}
+		}
+	}
+	.topNav{
+		@include float(left);
+		margin:14px 0 0 50px;
+		font-size:0;
+		width:478px;
+		border-right:1px solid $border_color;
+		.active{
+			color:$miancolor;
+		}
+		a{
+			@include font($topnav_color,14px);
+			font-weight:normal;
+			@include float(left);
+			margin-right:24px;
+			display:inline;
+			&:hover{
+				color:$miancolor;
+			}
+			@at-root .Navtext {
+				line-height:22px;
+				color:inherit;
+			}
+			@at-root .wicon{
+				@extend %wicon;
+				vertical-align: top;
+				padding-right:6px;
+				font-size:22px;
+				width:26px;
+			}
+		}
+		.account {
+			margin-right:0;
+		}
+		
+	}
+	.messageNav{
+		font-size:0;
+		@include float(right);
+		width:118px;
+		.write{
+			height:24px;
+			width:26px;
+			color:#fff;
+			background-color:$write_color;
+			@include border-radius(4px);
+			line-height:24px;
+			text-indent:2px;
+			position:relative;
+			top:-3px;
+			&:hover{
+				color:#fff;
+				background-color:desaturate($write_color,20%);
+			}
+		}
+		.last{
+			margin-left:0;
+			position:relative;
+		}
+		a{
+			@include float(right);
+			color:$topnav_color;
+			margin:15px 0 0 22px;
+			padding-right:0;
+			width:20px;
+			&:hover{
+				color:$miancolor;
+			}
+			.private{
+				width:22px;
+				height:14px;
+				background-color:$miancolor;
+				@include font(#fff,10px);
+				line-height:14px;
+				text-align:center;
+				display:block;
+				position:absolute;
+				top:-7px;
+				left:11px;
+				@include border-radius(2px);
+			}
+		}
+
+	}
+
+}
+.mainbox{
+	padding-top:16px;
+	background-color:rgba(0,0,0,0.2);
+	@include center();
+	.leftarea{
+		@include float(left);
+	}
+	.list_nav{
+		width:$c_width;
+		@include float(left);
+	}
+	.list_my{
+		font-weight:bold;
+		a{
+			font-size:14px;
+		}
+		@at-root .line{
+			border-top:1px solid #fff;
+			margin:10px 0;
+			@include opacity(0.2);
+		}
+		@at-root .Nav_tis{
+			@extend %wicon;
+			@include float(right);
+			padding-right:8px;
+			color:$miancolor;
+		}
+	}
+	.list_hot{
+		position:relative;
+		.wicon{
+			color:#fff;
+			display:inline-block;
+			font-weight:normal;
+			font-size:14px;
+			width:16px;
+			position:absolute;
+			right:7px;
+			bottom:-17px;
+			padding:0 5px;
+			text-indent:0;
+			&:hover{
+				background-color:transparent;
+				//@include box-shadow(0 1px 1px 1px #000)
+			}
+		}
+	}
+	.list_other{
+		@at-root .list_other_icon{	
+			@extend %wicon;
+			padding-right:7px;
+		}
+		.more_btn{
+			//width:44px;
+			height:22px;
+			text-indent:0;
+			line-height:22px;
+			text-align:center;
+			background-color:rgba(255,255,255,0.2);
+			@include center(0,44px);
+			@include border-radius(4px);
+
+		}
+		.Nav_tisNum{
+			@include font(#fff,10px);
+			width:22px;
+			height:14px;
+			line-height:14px;
+			background-color:$miancolor;
+			@include border-radius(4px);
+			@include float(right);
+			text-indent:0;
+			text-align:center;
+			margin:11px 10px;
+			vertical-align:middle;
+		}
+	}
+	@at-root .list_nav a {
+		@include font(#fff,12px);
+		display:block;
+		line-height:36px;
+		text-indent:14px;
+		&:hover{
+			background-color:rgba(255,255,255,0.3);
+		}
+	}
+	@at-root .main_content{
+		@include float(left);
+		.release_zone{
+			@include mainbox();
+		}
+		.releaseBox{
+			padding:0 10px;
+			@at-root .release_title{
+				padding-top:15px;
+				padding-bottom:5px;
+				.newthing{
+					@include float(left);
+					@extend %swbficon;
+					color:#416C81;
+					font-size:18px;
+					letter-spacing:-2px;
+				}
+				.moremessage{
+					@include float(right);
+					font-size:12px;
+					line-height:20px;
+					a {
+						color:$a_hover;
+						}
+				}
+			}
+			@at-root .release_content{
+				//margin-top:6px;
+				@extend %border;
+				@include box-shadow(0 0 2px 1px #F0F0F0 inset);
+				padding:5px;
+				min-height:$entryH;
+				font-size:0;
+				textarea {
+					@include font(#000,12px);
+					height:64px;
+					border:none;
+					width:100%;
+					background-color:transparent;
+					line-height:18px;
+					word-wrap: break-word;
+					&:focus {
+						outline:none;
+					}
+				}
+			}
+			@at-root .release_icon {
+				//@include float(left);
+				.kind{
+					@include float(left);
+					margin:13px 0 12px 0;
+					li{
+						@include float(left);
+						margin-right:20px;
+						//font-size:12px;
+						.icontext{
+							font-size:12px;
+							line-height:20px;
+						}
+						a{
+							color:#333;
+							//line-height:18px;
+							&:hover{
+								color:$a_hover;
+								.biaoqing{
+									color:desaturate($biaoqing,20%);
+								}
+								.pic{
+									color:desaturate($pic,10%);
+								}
+								.video{
+									color:desaturate($video,20%);
+								}
+								.toptic{
+									color:desaturate($toptic,20%);
+								}
+								.topline{
+									color:desaturate($topline,8%);
+								}
+							}
+							.biaoqing{
+								color:$biaoqing;
+							}
+							.pic{
+								color:$pic;
+							}
+							.video{
+								color:$video;
+							}
+							.toptic{
+								color:$toptic;
+							}
+							.topline{
+								color:$topline;
+							}
+							.list_other_icon{
+								font-size:20px;
+								vertical-align:top;
+							}
+						}
+					}
+				}
+				.issue{
+					@include float(right);
+					margin-top:5px;
+					.issue_btn{
+						width:82px;
+						height:30px;
+						background-color:$release_color;
+						text-align:center;
+						line-height:28px;
+						@include font(#fff,14px);
+						border:none;
+						@include border-radius(2px);
+						margin-left:14px;
+						&:focus{
+							outline:none;
+						}
+					}
+					a{
+						@include font;
+						vertical-align:-3px;
+						&:hover{
+							color:$a_hover;
+							.list_other_icon{
+								color:$miancolor;
+							}
+						}
+					}
+				}
+			}
+		}
+		.advert {
+			@include mainbox(600px,transparent);
+			font-size:0;
+			overflow:hidden;
+			//background-color:transparent;
+		}
+		.classify_zone{
+			//@extend .release_zone;
+			//@extend %border;
+			@include box-shadow(-1 0 2px 1px #F0F0F0 );
+			margin-bottom:10px;
+			//background-color:transparent;
+			//height:38px;
+			.classify_content{
+				//height:38px;
+				//background-color:#fff;
+			}
+			.classify{
+				.active {
+					font-weight:bold;
+					//@include border-radius(2px);
+				}
+				li{
+					@include float(left);
+					@include font(#000,12px);
+					//padding:12px 12px 0 12px;
+					.cl_text{
+						padding-left:12px;
+						line-height:38px;
+						height:31px;
+						overflow: hidden;
+						display:block;
+						background-color:#fff;
+					}
+					a{
+					  color:inherit;
+					  &:hover{
+					  	color:$a_hover;
+					  }
+					}
+				}
+				.single{
+					display:block;
+					@extend .clearfix;
+				}
+				.r,.l{
+					float:left;
+					display:inline-block;
+					height:7px;
+					width:18px;
+					background-color:#fff;
+				}
+				.m{
+					float:left;
+					width:0;
+					height:0;
+					display:inline-block;
+					border-width:0 7px 7px 7px;
+  	                border-color:#fff #fff  transparent #fff ;
+  	                border-style: dashed dashed solid dashed;
+  	                vertical-align: top;
+				}
+				.n{
+					float:left;
+					width:0;
+					height:0;
+					display:inline-block;
+					border-width:0 7px 7px 7px;
+  	                border-color:#fff #fff  #fff #fff ;
+  	                border-style: dashed dashed solid dashed;
+  	                vertical-align: top;
+				}
+			}
+			.cl_searchBox{
+				background-color:#fff;
+				width:300px;
+				@include float(right);
+				@include border-radius(2px);
+			}
+			.cl_search{
+				@include float(right);
+				font-size:0;
+				@extend %border;
+				@include box-shadow(0 0 2px 1px #F0F0F0 inset);
+				margin:6px 8px;
+				width:176px;
+				height:24px;
+				//padding:4px 0;
+				.cl_text{
+					@extend %input;
+					width:138px;
+					text-indent:10px;
+					font-size:12px;
+					padding-top:6px;
+					vertical-align:middle;
+				}
+				.cl_btn {
+					background-color:transparent;
+					@extend %input;
+					color:#B4B7BC;
+					font-size:16px;
+					vertical-align:middle;
+					padding:2px 0 0 0;
+				}
+				.cl_more{
+					@include float(right);
+					padding:5px 6px 0 0;
+					font-size:14px;
+					&:hover{
+						color:$miancolor;
+					}
+				}
+			}
+			.cl_footer{
+				background-color:#FFF8BF;
+				text-align:center;
+				@include border-radius(2px);
+				a{
+					color:#EB737D;
+					font-size:12px;
+					line-height:30px;
+				}
+			}
+		}
+		@at-root .weibo{
+			@include mainbox();
+			.weibomainBox{
+				position:relative;
+				padding:20px 20px 4px 20px;
+			}
+			.headpic{
+				@include float(left);
+				position:absolute;
+			}
+			.morelist{
+				//@include float(right);
+				right:20px;
+				position:absolute;
+				a:hover{
+					color:$miancolor;
+				}
+			}
+			.weibo_detial{
+				@include float(left);
+				margin-left:60px;
+				h3 {
+					margin-bottom:7px;
+				}
+				.ac_name {
+					@include font(#333333,14px);
+					font-weight:bold;
+					&:hover {
+						color:$a_hover;
+					}
+					@at-root .weibo_v{
+						width:14px;
+						height:12px;
+						background:url("../images/weibo_v.png") no-repeat;
+						display:inline-block;
+						margin-left:4px;
+					}
+					@at-root .huangguang{
+						width:16px;
+						height:15px;
+						background:url("../images/huangguan.png") no-repeat;
+						display:inline-block;
+						margin-left:4px;
+					}
+				}
+				.comeform{
+					@include font(#808080,12px);
+					margin-bottom:7px;
+					display:inline-block;
+					&:hover {
+						color:$a_hover;
+					}
+				}
+				.messagebox {
+					margin-bottom:7px;
+					p {
+						line-height:23px;
+						@include font(#000,14px);
+					}
+					a {
+						color:$a_hover;
+					}
+				}
+			}
+			.detial_footer{
+				border-top:1px solid #F2F2F5;
+				height:22px;
+				padding:8px 0;
+				.lastline{
+					border:none;
+				}
+				li {
+					@include float(left);
+					width:25%;
+					text-align:center;
+					height:22px;
+					border-right:1px solid #D9D9D9;
+					margin-right:-1px;
+					a{
+						@include font($detialcolor.12px);
+						&:hover{
+							color:$a_hover;
+							.list_other_icon{
+								color:$miancolor;
+							}
+						}
+						//line-height:22px;
+						.list_other_icon{
+							font-size:14px;
+						}
+					}
+				}
+			}
+		}
+	}
+	@at-root .rightarea{
+		margin-left:10px;
+		@include float(left);
+		.ac_databox {
+			@include mainbox(230px);
+			position:relative;
+			//height:165px;
+			//overflow:hidden;
+		}
+		.ac_bg{
+			background:url("../images/ac_bg.jpg") no-repeat;
+			height:75px;
+			width:100%;
+		}
+		.touxian{
+			margin:-46px auto 3px auto;
+			width:60px;
+			padding:3px;
+			background:rgba(255,255,255,0.3);
+			@include border-radius(50%);
+			overflow:hidden;
+			font-size:0;
+			img {
+				width:60px;
+				height:60px;
+				@include border-radius(50%);
+			}
+		}
+		.ac_name {
+			text-align:center;
+			margin:0 0 7px 0;
+			font-size:0;
+			padding:0;
+		}
+		.my_name,.my_huangguan,.my_level{
+			vertical-align:middle;
+		}
+		.my_name{
+			@include font(#333333,14px);
+			font-weight:bold;
+			@include inline-block();
+			line-height:16px;
+			&:hover{
+				color:$a_hover;
+			}
+		}
+		.my_huangguan{
+				background:url('../images/my_huangguan.png') no-repeat;
+				width:14px;
+				height:14px;
+				margin-left:3px;
+				@include inline-block();
+		}
+		.my_level{
+			background:url('../images/my_level.png') no-repeat;
+			width:33px;
+			height:14px;
+			@include inline-block();
+			font:12px Arial,Verdana,Helvetica,sans-serif;
+			color:#fff;
+			font-style:italic;
+			letter-spacing: -0.1em;
+			margin-left:3px;
+		}
+		.ac_fans{
+			margin: 0 16px 10px 16px;
+			.lastline{
+				border:none;
+			}
+			li{
+				width:33%;
+				@include float(left);
+				padding:2px 0;
+				height:30px;
+				border-right:1px solid #D9D9D9;
+				margin-right:-1px;
+				text-align:center;
+				.ac_mun{
+					font:18px Arial,Verdana,Helvetica,sans-serif;
+					font-weight:bold;
+					color:#333333;
+					line-height:18px;
+					display:block;
+					overflow:hidden;
+					&:hover{
+						color:$a_hover;
+					}
+				}
+				.ac_muncontent{
+					@include font(#808080,12px);
+					font-weight:normal;
+					display:block;
+				}
+			}
+		}
+		/*音乐模块*/
+		@at-root .songlistbox{
+			@include mainbox(230px);
+			@at-root .sidebartitle{
+				padding:11px 16px;
+				border-bottom:1px solid #F2F2F5;
+				height:17px;
+			}
+			@at-root .sidebar_tl{
+				@include float(left);
+				a{
+					@include font(#6B6B6B,14px);
+					line-height:16px;
+					font-weight:bold;
+					&:hover{
+						color:$a_hover;
+					}
+				}
+			}
+			@at-root .morechoose{
+				@include float(right);
+				.list_other_icon{
+					font-size:14px;
+				}
+				a{
+					@include font(#6B6B6B,12px);
+					line-height:16px;
+					&:hover{
+						color:$a_hover;
+						.list_other_icon{
+							color:$miancolor;
+						}
+					}
+				}
+			}
+			.songlist_content{
+				padding:0 6px;
+				.songitem{
+					padding:9px 10px;
+					border-bottom:1px solid #F2F2F5;
+				}
+				.songitem_tl{
+					@include float(left);
+					padding-top:6px;
+					font-size:0;
+					.song_num{
+						font:12px Arial,Verdana,Helvetica,sans-serif;
+						color:#fff;
+						background:url("../images/song_numbg.png") no-repeat;
+						width:15px;
+						height:15px;
+						text-align:center;
+						@include inline-block();
+					}
+					.song_name{
+						@include font(#333,14px);
+						padding-left:5px;
+						line-height:16px;
+						@include inline-block();
+					}
+				}
+				.song_start{
+					@include float(right);
+					font-size:0;
+				}
+			}
+			.songitem_active{
+				border:none;
+				.songitem_fl{
+					@include float(left);
+					padding:6px 0;
+					font-size:0;
+				}
+				.songitem_rl{
+					@include float(left);
+					padding-top:10px;
+					padding-left:5px;
+					h4{
+						margin-bottom:5px;
+					}
+					.song_name {
+						@include font(#333,14px);
+						line-height:16px;
+						font-weight:bold;
+					}
+					.song_num{
+						background:url("../images/song_numbg_active.png") no-repeat;
+						@include inline-block();
+						width:15px;
+						height:15px;
+						text-align:center;
+						color:#fff;
+						font-size:12px;
+						line-height:14px;
+						font-family:Arial,Verdana,Helvetica,sans-serif;
+						padding-right:6px;
+					}
+					.songer_name{
+						@include font(#808080,12px);
+						line-height:14px;
+					}
+				}
+			}
+			@at-root .sidebar_footer{
+				border-top:1px solid #D9D9D9;
+				text-align:center;
+				padding:11px 0;
+				font-size:0;
+				a{
+					@include font(#333,12px);
+					//line-height:13px;
+					&:hover{
+						color:$miancolor;
+					}
+				}
+			}
+		}
+		.ad_pic{
+			@include mainbox(230px);
+			.ad_picbox{
+				padding:16px 22px;
+			}
+		}
+		.hot_theme{
+			@include mainbox(230px);
+			.hot_content{
+				padding:13px 16px 10px 16px;
+				li {
+					height:14px;
+					padding:7px 0;
+				}
+				a {
+					@include font(#333,12px);
+					line-height:14px;
+					&:hover{
+						color:$a_hover;
+					}
+				}
+				.click_num {
+					@include font(#808080,12px);
+					@include float(right);
+					line-height:22px;
+				}
+			}
+		}
+		.follow {
+			@include mainbox(230px);
+			.follow_head{
+				height:32px;
+				line-height:32px;
+				padding:6px 0 0 16px;
+				@include font(#333,12px);
+				a {
+					color:$a_hover;
+				}
+			}
+			.follow_p{
+				background-color:#F2F2F5;
+				padding:16px;
+				.follow_btnbox{
+					float:right;
+					padding-top:4px;
+				}
+				span {
+					@include float(left);
+				}
+				.follow_ac{
+					font:12px '微软雅黑',Arial,Verdana,Helvetica,sans-serif;
+					padding-left:10px;
+					a{
+						color:$a_hover;
+					}
+					p{
+						color:#929293;
+					}
+					.lan_v,.red_v{
+						
+						@include inline-block();
+						width:14px;
+						height:12px;
+						margin-left:6px;
+					}
+					.lan_v{
+						background:url('../images/weibo_v_s.png') no-repeat;
+					}
+					.red_v{
+						background:url('../images/red_v.png') no-repeat;
+					}
+				}
+				.follow_btn {
+					display:block;
+					border:1px solid #D9D9D9;
+					@include border-radius(2px);
+					@include box-shadow(0 1px 1px 0 #D9D9D9);
+					width:50px;
+					height:14px;
+					padding:5px 0;
+					background-color:#fff;
+					@include font(#333,12px);
+					text-align:center;
+					line-height:14px;
+					&:hover{
+					@include box-shadow(0 1px 1px 0 #C2C2C2);
+					}
+					i{
+						background:url('../images/follow_add.png') no-repeat;
+						width:11px;
+						height:10px;
+						@include inline-block();
+						padding-right:4px;
+						position:relative;
+						top:-1px;
+					}
+				}
+			}
+		}
+		.member{
+			@include mainbox(230px);
+			.member_content {
+				padding:0 16px;
+				.member_my{
+					padding-top:25px;
+					a {
+						color:$a_hover;
+					}
+				}
+				p{
+					@include font(#333,12px);
+					line-height:22px; 
+				}
+				.member_pic{
+					margin:8px 0;
+				}
+				.btn_list{
+					padding-top:3px;
+					@include center(0,165px);
+					padding-bottom:16px;
+					a{
+						@include float(left);
+						@include font(#000,12px);
+						border:1px solid #D9D9D9;
+						@include border-radius(2px);
+					    @include box-shadow(0 1px 1px 0 #D9D9D9);
+					    text-align:center;
+					    padding:4px 10px;
+					    line-height:14px;
+					    display:block;
+					    margin:0 6px;
+					}
+				}
+			}
+		}
+		.notice{
+			@include mainbox(230px);
+			.notice_content{
+				padding:14px 16px 16px 16px;
+				a {
+					@include font($a_hover,12px);
+					line-height:24px;
+				}
+			}
+		}
+	}
+
+}
+

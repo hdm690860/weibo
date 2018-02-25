@@ -1,0 +1,31 @@
+@charset "UTF-8";
+//字体
+@mixin font($color:#000,$size:12px){
+	font:{
+		size:$size;
+		family:'微软雅黑',Arial,Verdana,Helvetica,sans-serif;
+	}
+	color:$color;
+}
+
+@mixin fonticon($size:10px,$w:18px){
+       font:{
+       	family:"wbficon" !important;
+       	size:18px;
+       }
+       -webkit-font-smoothing: antialiased;
+       width:18px;
+}
+@mixin center($m:0,$width:1000px){
+	margin:$m auto;
+	width:$width;
+}
+
+@mixin mainbox($mainW:600px,$c:#fff){
+			width:$mainW;
+			margin-bottom:10px;
+			background-color:$c;
+			@include box-shadow(0 0 2px 1px #afafaf);
+			@include border-radius(2px);
+
+}
